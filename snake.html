@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game</title>
+<style>
+  body {
+    margin: 0;
+    background: #111827;
+    color: #ffffff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  #game-container {
+    position: relative;
+    border: 4px solid #374151;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    background: #000000;
+  }
+
+  canvas {
+    display: block;
+    background: #000000;
+  }
+
+  #ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #10b981;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  #overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 12px;
+  }
+
+  #overlay h1 {
+    margin: 0 0 8px 0;
+    font-size: 48px;
+    color: #ef4444;
+  }
+
+  #overlay p {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    color: #e5e7eb;
+  }
+
+  button {
+    padding: 10px 24px;
+    font-size: 18px;
+    background: #10b981;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #047857;
+  }
+
+  button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+  }
+
+  #controls-hint {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #9ca3af;
+    user-select: none;
+  }
+
+  /* Mobile touch buttons */
+  .touch-row {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .touch-btn {
+    width: 70px;
+    height: 70px;
+    background: #1f2937;
+    border: 2px solid #4b5563;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #e5e7eb;
+    user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+
+  .touch-btn:active {
+    background: #374151;
+  }
+</style>
+</head>
+<body>
+
+<div id="game-container">
+  <div id="ui">Score: 0</div>
+  <canvas id="gameCanvas" width="400" height="400"></canvas>
+  <div id="overlay">
+    <h1 id="overlay-title">GAME OVER</h1>
+    <p id="overlay-text">Final Score: 0</p>
+    <button id="restartBtn">Play Again</button>
+  </div>
+</div>
+
+<div id="controls-hint">Arrow keys / WASD • Space = pause • R = restart • Esc = quit</div>
+
+<!-- Mobile touch buttons -->
+<div id="mobile-controls" style="display:none; margin-top:12px;">
+  <div style="display:flex; justify-content:center; gap:20px;">
+    <button class="touch-btn" data-dir="up" style="font-size:28px;">▲</button>
+  </div>
+  <div style="display:flex; justify-content:center; gap:20px;">
+    <button class="touch-btn" data-dir="left">◄</button>
+    <button class="touch-btn" data-dir="down">▼</button>
+    <button class="touch-btn" data-dir="right">►</button>
+  </div>
+</div>
+
+<button id="restartBtn" style="display:none;">Play Again</button>
+
+<script src="snake.js"></script>
+</body>
+</html>
